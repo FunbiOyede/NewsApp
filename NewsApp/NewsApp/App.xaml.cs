@@ -10,7 +10,7 @@ namespace NewsApp
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new NavigationPage(new RootPage());
         }
 
         protected override void OnStart()
