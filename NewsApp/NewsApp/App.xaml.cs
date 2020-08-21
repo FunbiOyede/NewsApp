@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NewsApp.Services;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -9,6 +10,7 @@ namespace NewsApp
         public App()
         {
             InitializeComponent();
+            DependencyService.Register<MockDataStore>();
 
             MainPage = new NavigationPage(new RootPage());
         }

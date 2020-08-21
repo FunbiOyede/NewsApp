@@ -3,10 +3,35 @@
     x:Class="NewsApp.Views.HeadlinePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:NewsApp.ViewModels"
     BackgroundColor="White">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="hloe" TextColor="Red" />
+            <ListView
+                x:Name="Goods"
+                ItemSelected="Goods_ItemSelected"
+                ItemsSource="{Binding GoodLists}"
+                SelectionMode="None">
+                <ListView.BindingContext>
+                    <local:TestViewModel />
+                </ListView.BindingContext>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10,0" Spacing="3">
+                                <Label Text="{Binding Name}" TextColor="Red" />
+                                <Button
+                                    BackgroundColor="Blue"
+                                    HeightRequest="30"
+                                    HorizontalOptions="CenterAndExpand"
+                                    Text="hello"
+                                    VerticalOptions="CenterAndExpand"
+                                    WidthRequest="170" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
