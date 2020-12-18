@@ -11,6 +11,7 @@ namespace NewsApp
         {
             InitializeComponent();
             DependencyService.Register<MockDataStore>();
+         
 
             MainPage = new NavigationPage(new RootPage());
         }

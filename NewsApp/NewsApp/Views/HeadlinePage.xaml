@@ -7,26 +7,23 @@
     BackgroundColor="White">
     <ContentPage.Content>
         <StackLayout>
+            <ActivityIndicator
+                IsRunning="{Binding Loader}"
+                IsVisible="{Binding Loader}"
+                Color="Blue" />
             <ListView
                 x:Name="Goods"
                 ItemSelected="Goods_ItemSelected"
-                ItemsSource="{Binding GoodLists}"
+                ItemsSource="{Binding HeadLineLists}"
                 SelectionMode="None">
                 <ListView.BindingContext>
-                    <local:TestViewModel />
+                    <local:HeadlineViewModel />
                 </ListView.BindingContext>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Padding="10,0" Spacing="3">
-                                <Label Text="{Binding Name}" TextColor="Red" />
-                                <Button
-                                    BackgroundColor="Blue"
-                                    HeightRequest="30"
-                                    HorizontalOptions="CenterAndExpand"
-                                    Text="hello"
-                                    VerticalOptions="CenterAndExpand"
-                                    WidthRequest="170" />
+                                <Label Text="{Binding title}" TextColor="Black" />
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>
