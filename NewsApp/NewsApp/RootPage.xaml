@@ -22,7 +22,7 @@
                 <local:SearchPage />
             </x:Arguments>
         </NavigationPage>
-        <NavigationPage Title="Bookmarks">
+        <NavigationPage Title="Favourites">
             <x:Arguments>
                 <local:BookmarksPage />
             </x:Arguments>

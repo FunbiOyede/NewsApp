@@ -3,27 +3,100 @@
     x:Class="NewsApp.Views.HeadlinePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:NewsApp.Controls"
+    xmlns:el="clr-namespace:Xamarin.Forms.EasyLoading;assembly=Xamarin.Forms.EasyLoading"
     xmlns:local="clr-namespace:NewsApp.ViewModels"
-    BackgroundColor="White">
+    xmlns:sk="clr-namespace:Xamarin.Forms.Skeleton;assembly=Xamarin.Forms.Skeleton"
+    xmlns:view="clr-namespace:NewsApp.Controls"
+    BackgroundColor="White"
+    BindingContext="{Binding HeadlineViewModel, Source={StaticResource Locator}}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:DateTimeConverter x:Key="DateTimeConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
-            <ActivityIndicator
-                IsRunning="{Binding Loader}"
-                IsVisible="{Binding Loader}"
-                Color="Blue" />
+
+        <StackLayout el:LoadingLayout.IsLoading="{Binding Loader}">
+
+            <el:LoadingLayout.LoadingTemplate>
+                <DataTemplate>
+                    <Grid Margin="0,150,0,0" BackgroundColor="White">
+                        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                            <ActivityIndicator
+                                HorizontalOptions="Center"
+                                IsRunning="{Binding Loader}"
+                                VerticalOptions="Center"
+                                Color="Blue" />
+
+
+                            <Label
+                                FontSize="15"
+                                HorizontalOptions="Center"
+                                Text="Loading..."
+                                TextColor="Black" />
+
+                        </StackLayout>
+                    </Grid>
+                </DataTemplate>
+            </el:LoadingLayout.LoadingTemplate>
             <ListView
-                x:Name="Goods"
-                ItemSelected="Goods_ItemSelected"
-                ItemsSource="{Binding HeadLineLists}"
-                SelectionMode="None">
-                <ListView.BindingContext>
-                    <local:HeadlineViewModel />
-                </ListView.BindingContext>
+                x:Name="headline"
+                HasUnevenRows="True"
+                ItemsSource="{Binding HeadLineList}"
+                SeparatorVisibility="None">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Padding="10,0" Spacing="3">
-                                <Label Text="{Binding title}" TextColor="Black" />
+                            <StackLayout>
+                                <Frame
+                                    Padding="10"
+                                    CornerRadius="8"
+                                    HasShadow="False"
+                                    HeightRequest="50"
+                                    OutlineColor="#F1F3F5">
+                                    <Grid Padding="5">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="20" />
+                                            <RowDefinition Height="20" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="40" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            LineBreakMode="TailTruncation"
+                                            Text="{Binding title}" />
+                                        <StackLayout
+                                            Grid.Row="1"
+                                            Grid.Column="0"
+                                            Orientation="Horizontal">
+                                            <Label
+                                                Font="Small"
+                                                HorizontalOptions="StartAndExpand"
+                                                LineBreakMode="TailTruncation"
+                                                Text="{Binding source.name}"
+                                                TextColor="Gray" />
+                                            <Label
+                                                Font="Small"
+                                                HorizontalOptions="CenterAndExpand"
+                                                LineBreakMode="TailTruncation"
+                                                Text="{Binding publishedAt, Converter={StaticResource DateTimeConverter}}"
+                                                TextColor="Gray" />
+                                        </StackLayout>
+
+                                        <Image
+                                            Grid.Row="0"
+                                            Grid.RowSpan="2"
+                                            Grid.Column="1"
+                                            Aspect="AspectFill"
+                                            Source="{Binding urlToImage}" />
+                                    </Grid>
+
+                                </Frame>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

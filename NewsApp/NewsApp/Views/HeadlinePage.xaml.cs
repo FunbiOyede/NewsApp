@@ -23,10 +23,6 @@ namespace NewsApp.Views
 
         }
 
-        private async void Goods_ItemSelected(object sender, SelectedItemChangedEventArgs e)
-        {
-            var item = (test)e.SelectedItem;
-          await   DisplayAlert("ok", item.Description, "ol");
-         }
+       
     }
 }

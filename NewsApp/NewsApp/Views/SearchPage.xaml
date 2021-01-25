@@ -3,10 +3,100 @@
     x:Class="NewsApp.Views.SearchPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    BackgroundColor="White">
+    xmlns:converter="clr-namespace:NewsApp.Controls"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    BackgroundColor="White"
+    BindingContext="{Binding SearchViewModel, Source={StaticResource Locator}}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:DateTimeConverter x:Key="DateTimeConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout>
-            <SearchBar BackgroundColor="Gray" Placeholder="Search.." />
+
+            <SearchBar
+                BackgroundColor="#E5E5E5"
+                Placeholder="Start searching..."
+                Text="{Binding SearchText, Mode=TwoWay}">
+                <SearchBar.Behaviors>
+                    <xct:UserStoppedTypingBehavior
+                        Command="{Binding SearchCommand}"
+                        ShouldDismissKeyboardAutomatically="True"
+                        StoppedTypingTimeThreshold="1000" />
+                </SearchBar.Behaviors>
+            </SearchBar>
+            <ActivityIndicator IsRunning="{Binding Loader}" IsVisible="{Binding Loader}" />
+
+            <ListView
+                x:Name="search"
+                Grid.Row="3"
+                Grid.ColumnSpan="2"
+                CachingStrategy="RecycleElement"
+                HasUnevenRows="True"
+                ItemsSource="{Binding SearchLists}"
+                RowHeight="100"
+                SelectionMode="None"
+                SeparatorVisibility="Default">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Frame
+                                    Padding="10"
+                                    CornerRadius="8"
+                                    HasShadow="False"
+                                    HeightRequest="50"
+                                    OutlineColor="#F1F3F5">
+                                    <Grid Padding="5">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="20" />
+                                            <RowDefinition Height="20" />
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="40" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label
+                                            Grid.Row="0"
+                                            Grid.Column="0"
+                                            LineBreakMode="TailTruncation"
+                                            Text="{Binding title}" />
+                                        <StackLayout
+                                            Grid.Row="1"
+                                            Grid.Column="0"
+                                            Orientation="Horizontal">
+                                            <Label
+                                                Font="Small"
+                                                HorizontalOptions="StartAndExpand"
+                                                LineBreakMode="TailTruncation"
+                                                Text="{Binding source.name}"
+                                                TextColor="Gray" />
+                                            <Label
+                                                Font="Small"
+                                                HorizontalOptions="CenterAndExpand"
+                                                LineBreakMode="TailTruncation"
+                                                Text="{Binding publishedAt, Converter={StaticResource DateTimeConverter}}"
+                                                TextColor="Gray" />
+                                        </StackLayout>
+                                        <Image
+                                            Grid.Row="0"
+                                            Grid.RowSpan="2"
+                                            Grid.Column="1"
+                                            Aspect="AspectFill"
+                                            Source="{Binding urlToImage}" />
+                                    </Grid>
+                                </Frame>
+                            </StackLayout>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
         </StackLayout>
+
+
     </ContentPage.Content>
 </ContentPage>

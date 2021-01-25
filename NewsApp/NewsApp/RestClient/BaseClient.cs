@@ -14,25 +14,10 @@ namespace NewsApp.RestClient
 {
   public  class BaseClient<T>
     {
-        //readonly NewsApiClient newsApiClient = new NewsApiClient("0f108cb1c6744b3ba179a42e46b11f89");
+       
         public async Task<T> GenericGet(string url)
         {
-            //try
-            //{
-            //    var articlesResponse = await newsApiClient.GetTopHeadlinesAsync(new TopHeadlinesRequest
-            //    {
-            //        Page = 1,
-            //        PageSize = 50,
-            //        Language = Languages.EN
-            //    });
-
-            //    return articlesResponse;
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine(ex.Message);
-            //    throw ex;
-            //}
+           
 
             try
             {

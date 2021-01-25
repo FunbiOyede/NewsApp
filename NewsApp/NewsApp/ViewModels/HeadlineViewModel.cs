@@ -4,39 +4,54 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using Xamarin.Forms;
 
 namespace NewsApp.ViewModels
 {
    public class HeadlineViewModel : BaseViewModel
     {
-        public ObservableCollection<Article> HeadLineLists { get; set; }
+        public ObservableCollection<Article> HeadLineList { get; set; }
 
-
+        private IApiServices apiServices;
         private bool loader;
         public bool Loader
         {
             get { return loader; }
             set { loader = value; RaisePropertyChanged(nameof(Loader)); }
         }
-
-        public ApiServices apiServices = new ApiServices();
-        public HeadlineViewModel()
+        
+       
+        public HeadlineViewModel(IApiServices services)
         {
-            HeadLineLists = new ObservableCollection<Article>();
-            Loader = true;
+           
+            apiServices = services;
+            HeadLineList = new ObservableCollection<Article>();
             LoadData();
         }
 
         private async void LoadData()
         {
-
-            HeadLineLists.Clear();
-            var Items = await apiServices.GetArticles();
-            foreach (var item in Items)
+            try
             {
-                HeadLineLists.Add(item);
+               
+                Loader = true;
+
+                var Items = await apiServices.GetArticles();
+              
+                foreach (var item in Items)
+                {
+                    HeadLineList.Add(item);
+
+                }
+
+                Loader = false;
             }
-            Loader = false;
+            catch (Exception ex)
+            {
+
+                await Application.Current.MainPage.DisplayAlert("Alert", ex.Message, "Cancel", "ok");
+            }
+            
         }
 
     }

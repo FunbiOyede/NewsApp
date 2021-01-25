@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -14,5 +15,16 @@ namespace NewsApp.Models
         public string urlToImage { get; set; }
         public DateTime publishedAt { get; set; }
         public string content { get; set; }
+        [JsonIgnore]
+        public string publishedDate
+        {
+           
+            get
+            {
+                DateTime dateOnly = publishedAt.Date;
+                return dateOnly.ToString("MM/dd/yyyy");
+            }
+        }
+
     }
 }

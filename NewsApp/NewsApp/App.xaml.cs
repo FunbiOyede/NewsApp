@@ -1,5 +1,8 @@
-﻿using NewsApp.Services;
+﻿using CommonServiceLocator;
+using NewsApp.Services;
 using System;
+using Unity;
+using Unity.ServiceLocation;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -11,7 +14,11 @@ namespace NewsApp
         {
             InitializeComponent();
             DependencyService.Register<MockDataStore>();
-         
+          
+            var container = new UnityContainer();
+            container.RegisterType<IApiServices, ApiServices>();
+            var unityServiceLocator = new UnityServiceLocator(container);
+            ServiceLocator.SetLocatorProvider(() => unityServiceLocator);
 
             MainPage = new NavigationPage(new RootPage());
         }
