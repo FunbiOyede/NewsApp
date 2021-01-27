@@ -24,8 +24,8 @@ namespace NewsApp.RestClient
 
                 var handler = new HttpClientHandler();
                 var client = new HttpClient(handler);
-        
-                
+                client.Timeout = TimeSpan.FromMinutes(10);
+
                 var requestMessage = new HttpRequestMessage
                 {
                     Method = HttpMethod.Get,
@@ -55,7 +55,7 @@ namespace NewsApp.RestClient
             {
 
                 Console.WriteLine(ex.Message);
-                throw;
+                throw ex;
             }
 
         }

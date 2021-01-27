@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="NewsApp.Views.ArticleDetailsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:converter="clr-namespace:NewsApp.Controls"
+    BindingContext="{Binding ArticleDetailsViewModel}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converter:DateTimeConverter x:Key="DateTimeConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <ScrollView>
+                <FlexLayout
+                    AlignContent="Start"
+                    AlignItems="Start"
+                    Wrap="Wrap">
+                    <Image FlexLayout.Basis="100%" Source="{Binding ArticleContent.urlToImage}" />
+                    <Label
+                        Margin="10,10"
+                        FontAttributes="Bold"
+                        FontSize="Medium"
+                        HorizontalTextAlignment="Start"
+                        Text="{Binding ArticleContent.title}"
+                        TextColor="#01487E" />
+                    <!--<Label
+                        FontSize="Micro"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="{Binding publishedAt, Converter={StaticResource DateTimeConverter}}"
+                        TextColor="Gray" />-->
+                    <Label
+                        Margin="10,0,0,0"
+                        FontSize="Small"
+                        HorizontalTextAlignment="Start"
+                        Text="{Binding ArticleContent.content}"
+                        TextColor="Black" />
+                </FlexLayout>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
