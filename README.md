@@ -14,6 +14,10 @@ MVVM(Model–View–ViewModel) is an Architectural Pattern that escalates separa
 - ViewModel: The viewmodel is an abstraction of the view . Resposible for the management of the states and actions that takes place in the view
 - View: The view represents the layout and appearances a user sees on the screen.
 
-# Roadmap
+## Backend
+
+The sample uses the [News API](https://newsapi.org/) backend, where you can register and generate a developer key which is required to run this sample. Keep this value safe to be used later.
+
+# Task
 
 - [x] Chore Task
