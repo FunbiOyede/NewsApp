@@ -9,43 +9,20 @@
     xmlns:sk="clr-namespace:Xamarin.Forms.Skeleton;assembly=Xamarin.Forms.Skeleton"
     xmlns:view="clr-namespace:NewsApp.Controls"
     BackgroundColor="White"
-    BindingContext="{Binding HeadlineViewModel, Source={StaticResource Locator}}">
+    BindingContext="{Binding HeadlineViewModel, Source={StaticResource Locator}}"
+    NavigationPage.HasNavigationBar="false">
     <ContentPage.Resources>
         <ResourceDictionary>
             <converter:DateTimeConverter x:Key="DateTimeConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-
-        <StackLayout>
-
-            <!--<el:LoadingLayout.LoadingTemplate>
-                <DataTemplate>
-                    <Grid Margin="0,150,0,0" BackgroundColor="White">
-                        <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
-                            <ActivityIndicator
-                                HorizontalOptions="Center"
-                                IsRunning="{Binding Loader}"
-                                VerticalOptions="Center"
-                                Color="Blue" />
-
-
-                            <Label
-                                FontSize="15"
-                                HorizontalOptions="Center"
-                                Text="Loading..."
-                                TextColor="Black" />
-
-                        </StackLayout>
-                    </Grid>
-                </DataTemplate>
-            </el:LoadingLayout.LoadingTemplate>-->
+        <StackLayout Margin="0,15,0,0">
             <ListView
                 x:Name="headline"
                 HasUnevenRows="True"
-                ItemTapped="headline_ItemTapped"
                 ItemsSource="{Binding HeadLineList}"
-                SelectionMode="Single"
+                SelectedItem="{Binding SelectedArticleType, Mode=OneWayToSource}"
                 SeparatorVisibility="None">
                 <ListView.ItemTemplate>
                     <DataTemplate>

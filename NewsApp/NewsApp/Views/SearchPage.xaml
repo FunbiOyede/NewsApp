@@ -6,7 +6,8 @@
     xmlns:converter="clr-namespace:NewsApp.Controls"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
     BackgroundColor="White"
-    BindingContext="{Binding SearchViewModel, Source={StaticResource Locator}}">
+    BindingContext="{Binding SearchViewModel, Source={StaticResource Locator}}"
+    NavigationPage.HasNavigationBar="false">
     <ContentPage.Resources>
         <ResourceDictionary>
             <converter:DateTimeConverter x:Key="DateTimeConverter" />
@@ -36,7 +37,7 @@
                 HasUnevenRows="True"
                 ItemsSource="{Binding SearchLists}"
                 RowHeight="100"
-                SelectionMode="None"
+                SelectedItem="{Binding SelectedArticleType, Mode=OneWayToSource}"
                 SeparatorVisibility="Default">
                 <ListView.ItemTemplate>
                     <DataTemplate>

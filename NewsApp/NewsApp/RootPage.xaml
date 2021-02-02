@@ -11,20 +11,14 @@
     android:TabbedPage.ToolbarPlacement="Bottom"
     BarBackgroundColor="White">
     <TabbedPage.Children>
-        <NavigationPage Title="Headlines">
+        <NavigationPage Title="Headlines" IconImageSource="news.png">
             <x:Arguments>
                 <local:HeadlinePage />
             </x:Arguments>
         </NavigationPage>
-        <NavigationPage Title="Search">
+        <NavigationPage Title="Search" IconImageSource="search.png">
             <x:Arguments>
-
                 <local:SearchPage />
-            </x:Arguments>
-        </NavigationPage>
-        <NavigationPage Title="Favourites">
-            <x:Arguments>
-                <local:BookmarksPage />
             </x:Arguments>
         </NavigationPage>
     </TabbedPage.Children>

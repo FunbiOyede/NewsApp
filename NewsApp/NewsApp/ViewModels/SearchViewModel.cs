@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows.Input;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace NewsApp.ViewModels
@@ -14,6 +15,23 @@ namespace NewsApp.ViewModels
     {
         public ObservableCollection<Article> SearchLists { get; set; }
 
+
+        private Article selectedType;
+        public Article SelectedArticleType
+        {
+            get => selectedType;
+            set
+            {
+                RaisePropertyChanged(nameof(SelectedArticleType));
+                selectedType = value;
+                if (value != null)
+                {
+                    Launcher.TryOpenAsync(value.url);
+                }
+
+
+            }
+        }
         public ICommand SearchCommand { get; set; }
 
         private IApiServices apiServices;

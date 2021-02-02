@@ -23,11 +23,11 @@ namespace NewsApp.Views
 
         }
 
-        private async void headline_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            Article a = e.Item as Article;
-            await Navigation.PushAsync(new ArticleDetailsPage() {BindingContext = new ArticleDetailsViewModel(a) });
-            //await Application.Current.MainPage.DisplayAlert("Alert", a.url, "Cancel", "ok");
-        }
+        //private async void headline_ItemTapped(object sender, ItemTappedEventArgs e)
+        //{
+        //    Article a = e.Item as Article;
+        //    await Navigation.PushAsync(new ArticleDetailsPage() {BindingContext = new ArticleDetailsViewModel(a) });
+        //    //await Application.Current.MainPage.DisplayAlert("Alert", a.url, "Cancel", "ok");
+        //}
     }
 }
