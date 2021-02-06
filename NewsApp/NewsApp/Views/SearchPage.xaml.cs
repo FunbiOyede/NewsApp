@@ -19,10 +19,12 @@ namespace NewsApp.Views
             InitializeComponent();
         }
 
-        //private async void search_ItemTapped(object sender, ItemTappedEventArgs e)
-        //{
-        //    Article a = e.Item as Article;
-        //    await Navigation.PushAsync(new ArticleDetailsPage() { BindingContext = new ArticleDetailsViewModel(a) });
-        //}
+
+        private async void search_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            Article a = e.Item as Article;
+            await Navigation.PushAsync(new ArticleDetailsPage() { BindingContext = new ArticleDetailsViewModel(a) });
+
+        }
     }
 }

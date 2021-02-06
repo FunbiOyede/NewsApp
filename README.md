@@ -21,3 +21,7 @@ The sample uses the [News API](https://newsapi.org/) backend, where you can regi
 # Task
 
 - [x] Chore Task
+
+![first screenshot](readme_illustrations/Screenshot_20210206-015525.png)
+![second screenshot](readme_illustrations/Screenshot_20210206-015545.png)
+![third screenshot](readme_illustrations/Screenshot_20210206-015600.png)

@@ -13,22 +13,22 @@ namespace NewsApp.ViewModels
     {
         public ObservableCollection<Article> HeadLineList { get; set; }
 
-        private Article selectedType;
-        public Article SelectedArticleType
-        {
-            get => selectedType;
-            set
-            {
-                RaisePropertyChanged(nameof(SelectedArticleType));
-                selectedType = value;
-                if(value != null)
-                {
-                    Launcher.TryOpenAsync(value.url);
-                }
+        //private Article selectedType;
+        //public Article SelectedArticleType
+        //{
+        //    get => selectedType;
+        //    set
+        //    {
+        //        RaisePropertyChanged(nameof(SelectedArticleType));
+        //        selectedType = value;
+        //        if(value != null)
+        //        {
+        //            Launcher.TryOpenAsync(value.url);
+        //        }
                
 
-            }
-        }
+        //    }
+        //}
 
         private IApiServices apiServices;
         private bool loader;

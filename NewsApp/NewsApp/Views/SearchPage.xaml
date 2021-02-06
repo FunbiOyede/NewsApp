@@ -17,8 +17,9 @@
         <StackLayout>
 
             <SearchBar
-                BackgroundColor="#E5E5E5"
+                BackgroundColor="Transparent"
                 Placeholder="Start searching..."
+                PlaceholderColor="Black"
                 Text="{Binding SearchText, Mode=TwoWay}">
                 <SearchBar.Behaviors>
                     <xct:UserStoppedTypingBehavior
@@ -27,7 +28,10 @@
                         StoppedTypingTimeThreshold="1000" />
                 </SearchBar.Behaviors>
             </SearchBar>
-            <ActivityIndicator IsRunning="{Binding Loader}" IsVisible="{Binding Loader}" />
+            <ActivityIndicator
+                IsRunning="{Binding Loader}"
+                IsVisible="{Binding Loader}"
+                Color="Black" />
 
             <ListView
                 x:Name="search"
@@ -35,9 +39,9 @@
                 Grid.ColumnSpan="2"
                 CachingStrategy="RecycleElement"
                 HasUnevenRows="True"
+                ItemTapped="search_ItemTapped"
                 ItemsSource="{Binding SearchLists}"
                 RowHeight="100"
-                SelectedItem="{Binding SelectedArticleType, Mode=OneWayToSource}"
                 SeparatorVisibility="Default">
                 <ListView.ItemTemplate>
                     <DataTemplate>
