@@ -26,12 +26,4 @@ The sample uses the [News API](https://newsapi.org/) backend, where you can regi
 
 ### Headline Screen
 
-![first screenshot](readme_illustrations/Screenshot_headlines.jpg)
-
-### Content Screen
-
-![second screenshot](readme_illustrations/Screenshot_screen.jpg)
-
-### Search Screen
-
-![third screenshot](readme_illustrations/Screenshot_search.jpg)
+![first screenshot](readme_illustrations/Screenshot_headlines.jpg) &nbsp;&nbsp;&nbsp; ![second screenshot](readme_illustrations/Screenshot_screen.jpg) &nbsp;&nbsp;&nbsp; ![third screenshot](readme_illustrations/Screenshot_search.jpg)
